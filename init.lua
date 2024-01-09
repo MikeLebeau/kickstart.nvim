@@ -200,16 +200,24 @@ require('lazy').setup({
 
   {
     -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
+   'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
+     options = {
+      icons_enabled = false,
+       theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
     },
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "catppuccin-macchiato"
+    end,
   },
 
   {
@@ -274,8 +282,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
-
+vim.o.hlsearch = true
 -- Make line numbers default
 vim.wo.number = true
 
@@ -427,14 +434,7 @@ vim.defer_fn(function()
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
-    -- Install languages synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-    -- List of parsers to ignore installing
-    ignore_install = {},
-    -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
-    modules = {},
+
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = {
@@ -664,5 +664,10 @@ cmp.setup {
   },
 }
 
+require("catppuccin").setup({
+  flavour = "macchiato",
+})
+
+vim.cmd.colorscheme "catppuccin"
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
